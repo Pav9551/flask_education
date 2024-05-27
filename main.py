@@ -12,7 +12,7 @@ def user(name):
     if name == 'pavel':
         print('Hi, pavel')
     #return '<h1>Hello, %s - user!</h1>' % name
-    return render_template('index.html', name = 'my name')
+    return render_template('index.html', name = name)
 
 if __name__ == '__main__':
     print_name()
