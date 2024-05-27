@@ -3,9 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <h1>Hello, {{ name }} - user!</h1>
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Изучение Roblox</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #ff0000;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+        nav a {
+            color: white;
+            padding: 1rem;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .lesson {
+            background-color: white;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-
+    <header>
+        <h1>Изучение Roblox</h1>
+        <h1>Hello, {{ name }} - user!</h1>
+    </header>
+    <nav>
+        <a href="#home">Главная</a>
+        <a href="#lessons">Уроки</a>
+        <a href="#resources">Ресурсы</a>
+        <a href="#contact">Контакты</a>
+    </nav>
+    <div class="container" id="home">
+        <h2>Добро пожаловать на сайт по изучению Roblox!</h2>
+        <p>Здесь вы найдете все необходимое для того, чтобы начать создавать свои собственные игры в Roblox.</p>
+    </div>
+    <div class="container" id="lessons">
+        <h2>Уроки</h2>
+        <div class="lesson">
+            <h3>Урок 1: Введение в Roblox Studio</h3>
+            <p>В этом уроке вы узнаете, как установить и настроить Roblox Studio, а также познакомитесь с его основными функциями.</p>
+        </div>
+        <div class="lesson">
+            <h3>Урок 2: Основы скриптинга на Lua</h3>
+            <p>Этот урок познакомит вас с основами программирования на языке Lua, который используется для создания игр в Roblox.</p>
+        </div>
+    </div>
+    <div class="container" id="resources">
+        <h2>Ресурсы</h2>
+        <ul>
+            <li><a href="https://developer.roblox.com/">Официальная документация Roblox</a></li>
+            <li><a href="https://www.roblox.com/create">Создание игр на Roblox</a></li>
+            <li><a href="https://www.youtube.com/@Roblox">YouTube канал разработчиков Roblox</a></li>
+        </ul>
+    </div>
+    <div class="container" id="contact">
+        <h2>Контакты</h2>
+        <p>Если у вас есть вопросы, вы можете связаться с нами по электронной почте: <a href="mailto:info@robloxstudy.com">info@robloxstudy.com</a></p>
+    </div>
+    <footer>
+        <p>&copy; 2024 Изучение Roblox. Все права защищены.</p>
+    </footer>
 </body>
 </html>
