@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обучение Lua с Roblox Studio - {% block title %}{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #ff0000;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+        nav a {
+            color: white;
+            padding: 1rem;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .lesson {
+            background-color: white;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+    {% endblock %}
+</head>
+<body>
+    {% block body %}
+    <header>
+        <h1>Обучение Lua с Roblox Studio</h1>
+    </header>
+    <nav>
+        <a href="#introduction">Введение</a>
+        <a href="#environment">Среда обучения</a>
+        <a href="#lessons">Уроки</a>
+    </nav>
+    <div class="container" id="introduction">
+        <h2>1. Введение в программирование</h2>
+        <p>Перед началом обучения Lua, нужно объяснить основные концепции программирования, такие как переменные, циклы, условные операторы и функции. Можно использовать визуальные и игровые инструменты для этого.</p>
+    </div>
+    <div class="container" id="environment">
+        <h2>2. Выбор среды обучения</h2>
+        <p>Для обучения Lua в контексте Roblox рекомендуется использовать Roblox Studio, так как это интуитивно понятная и популярная платформа, которая позволяет создавать свои собственные игры.</p>
+    </div>
+    <div class="container" id="lessons">
+        <h2>3. Начальные уроки</h2>
+        <div class="lesson" id="lesson1">
+            <h3>Урок 1: Введение в Roblox Studio</h3>
+            <ul>
+                <li>Объяснить, что такое Roblox Studio.</li>
+                <li>Показать, как его установить и настроить.</li>
+                <li>Ознакомить учеников с интерфейсом.</li>
+            </ul>
+        </div>
+        <div class="lesson" id="lesson2">
+            <h3>Урок 2: Основы Lua</h3>
+            <ul>
+                <li>Объяснить, что такое переменные и как их использовать.</li>
+                <li>Показать примеры простых программ.</li>
+                <li>Показать, как запускать код в Roblox Studio.</li>
+            </ul>
+        </div>
+        <div class="lesson" id="lesson3">
+            <h3>Урок 3: Условные операторы и циклы</h3>
+            <ul>
+                <li>Объяснить, что такое условные операторы (if-then-else).</li>
+                <li>Объяснить, что такое циклы (for, while).</li>
+                <li>Показать примеры их использования в игре.</li>
+            </ul>
+        </div>
+        <div class="lesson" id="lesson4">
+            <h3>Урок 4: Функции и события</h3>
+            <ul>
+                <li>Объяснить, что такое функции и как их создавать.</li>
+                <li>Объяснить, что такое события в Roblox и как их использовать.</li>
+                <li>Показать примеры создания функций и обработки событий.</li>
+            </ul>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Обучение Lua с Roblox Studio. Все права защищены.</p>
+    </footer>
+    {% endblock %}
+</body>
+</html>

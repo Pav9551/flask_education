@@ -6,7 +6,7 @@ def print_name():
 
 @app.route('/')
 def index():
-    return '<h1>Hello World!</h1>'
+    return render_template('index.html')
 @app.route('/user/<name>')
 def user(name):
     if name == 'pavel':
@@ -14,6 +14,12 @@ def user(name):
     #return '<h1>Hello, %s - user!</h1>' % name
     return render_template('index.html', name = name)
 
+@app.route('/page1')
+def page1():
+    return render_template('page1.html')
+@app.route('/templ')
+def template_page():
+    return render_template('template_page.html')
 if __name__ == '__main__':
     print_name()
     app.run(debug=True)
