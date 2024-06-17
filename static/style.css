@@ -17,8 +17,13 @@ body {
   margin: auto;
   padding: 15px;
   /* original that doesn't exist anymore
-  background-image: url('http://www.animateit.net/data/media/august2009/space_bg.gif');*/
+  background-image: url('http://www.animateit.net/data/media/august2009/space_bg.gif');
   background-image: url('https://64.media.tumblr.com/tumblr_lyholoVeUH1qg95ipo1_500.gif');
+
+  background-image: url('/static/nirvana.jpg')*/
+  background-image: url('/static/v1016-b-09.jpg')
+
+
 }
 
 .preamble, aside, .main {
@@ -49,10 +54,10 @@ body {
 }
 
 .summary {
-  font-size: 0.8em;
+  font-size: 1.2em;
   font-family: 'Mogra', cursive;
-  padding-left: 120px;
-  padding-right: 120px;
+  text-align: justify;
+  text-indent: 50%;
 }
 
 .main p, .preamble p {
@@ -79,6 +84,9 @@ h1 {
   text-shadow: 2px 2px #ff2200;
   -webkit-animation: mymove 5s infinite;
   animation: mymove 5s infinite;
+  color: #33FF86;
+  text-align: justify;
+  text-indent: 60%;
 }
 
 @-webkit-keyframes mymove {
@@ -94,9 +102,9 @@ h2 {
   position: relative;
   overflow-x: -webkit-marquee;
   animation: marquee 5s linear infinite alternate;
-  font-family: 'Ruslan Display', cursive;
+  font-family: 'Oleo Script Swash Caps', cursive;
   -webkit-text-stroke: 1px white;
- color: rgba(255, 100, 155, 0.9);
+ color: #E933FF ;
 }
 
 h3 {
