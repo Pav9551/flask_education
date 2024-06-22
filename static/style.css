@@ -63,6 +63,8 @@ body {
 .main p, .preamble p {
   text-indent: 2em;
   text-align: justify;
+  font-family: 'Rubik', cursive;
+
 }
 
 aside {
@@ -108,7 +110,7 @@ h2 {
 }
 
 h3 {
-  font-family: 'Love Ya Like A Sister', cursive;
+  font-family: 'Rubik', cursive;
   background: -webkit-linear-gradient(#e04, #333);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -202,7 +204,27 @@ a:hover {
   font-family: 'Seaweed Script', cursive;
 }
 
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+}
 
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+th {
+  background-color: black;
+  color: white;
+}
 /*
 Fonts:
 

@@ -14,7 +14,7 @@ def user(name):
     #return '<h1>Hello, %s - user!</h1>' % name
     return render_template('index.html', name = name)
 
-@app.route('/page1')
+@app.route('/219/')
 def page1():
     return render_template('page1.html')
 @app.route('/templ')
