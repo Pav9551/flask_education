@@ -8,136 +8,164 @@
 {% endblock %}
 {% block preamble %}
 		<div class="preamble" id="environment" role="article">
-			<h3>1. Изучение основных объектов моделирования физики</h3>
-			<p>Перед началом изучения Lua необходимо ознакомиться с основными окнами Roblox Studio.</p>
-			<p>Меню View предназначено для отображения и скрытия окон программы. Основными окнами являются - Explorer, Properties, Toolbox , Object Browser:</p>
-			<p>View->Explorer - отображает все службы из которых состоит игра и содержащиеся в них объекты;</p>
-			<p>View->Properties - отображает все свойства объектов;</p>
-			<p>View->Toolbox - отображает все доступные сторонние ресурсы доступные для игры;</p>
-			<p>View->Object Browser - документация по большенству доступных классов - шаблонов по которым создаются объекты.</p>
+			<h3>4. Объекты моделирования физики</h3>
+			<p>В Roblox Studio доступны объекты моделирования физики:</p>
+			<p>AlignPosition(Выравнивание позиции) - это компонент, который позволяет выравнивать позицию одного объекта (дочернего) относительно другого (родительского), тем самым создает движение объекта;</p>
+			<p>AlignOrienation(Выравнивание ориентации) - это компонент, который позволяет выравнивать ориентацию (поворот) одного объекта (дочернего) относительно другого (родительского), тем самым стабилизирует положение объекта и не дает ему перевернуться;</p>
+			<p>Аttachment(Присоединение) - наличие этого объекта, есть необходимое требование для работы AlignPosition и AlignOrienation.</p>
+			<p>Применение этих объектов позволяет нам создать двигающуюся платформу на базе объекта класса Part. Физические свойства класса Part приведены в таблице</p>
+			<h3>Таблица 2. Физические свойства класса Part</h3>
+		<table>
+		  <thead>
+			<tr>
+			  <th>Свойство</th>
+			  <th>Описание</th>
+			  <th>Значение</th>
+			</tr>
+		  </thead>
+		  <tbody>
+		  	<tr>
+			  <td>Anchored</td>
+			  <td>Фиксирует объект в пространстве, не позволяя ему двигаться.</td>
+			  <td>Логическое значение (true/false).</td>
+			</tr>
+			<tr>
+			  <td>Mass</td>
+			  <td>Масса объекта.</td>
+			  <td>Числовое значение, измеряемое в килограммах (kg).</td>
+			</tr>
+			<tr>
+			  <td>Friction</td>
+			  <td>Коэффициент трения, определяющий, как объект будет двигаться по поверхности.</td>
+			  <td>Числовое значение от 0 до 1. Чем выше значение, тем больше трение.</td>
+			</tr>
+			<tr>
+			  <td>Elasticity</td>
+			  <td>Коэффициент упругости, определяющий, насколько объект будет отскакивать от других объектов.</td>
+			  <td>Числовое значение от 0 до 1. Чем выше значение, тем больше упругость.</td>
+			</tr>
+			<tr>
+			  <td>CanCollide</td>
+			  <td>Включает или отключает возможность столкновения с другими объектами.</td>
+			  <td>Логическое значение (true/false).</td>
+			</tr>
+		  </tbody>
+		</table>
 		</div>
 {% endblock %}
 {% block main_supporting %}
 	<div class="main supporting" id="introduction" role="main">
 		<div class="explanation" id="moving" role="article">
-			<h3>2. Создание движущейся платформы</h3>
-			<p>Для знакомства с Lua необходимо создать новый объект Script в службе ServerScriptService. Кнопка "+" в окне Explorer справа от службы
+			<h3>5 Создание движущейся платформы</h3>
+			<p>Для того, чтобы заставить объект Part (принадлежащий workspace) двигаться, необходимо создать новый объект Script в службе ServerScriptService. Кнопка "+" в окне Explorer справа от службы, поменять имя объекта на Script_move (свойство Name)
 			и добавить строчки кода:</p>
 
 			<pre><code class="lang-js">
--- создаем экзкмпляр класса "Part" - "часть"
--- конструктором класса Instance.new,
--- где Instance - глобальный класс, a
--- new - метод класса
--- "Part" - аргумент метода (название класса нового объекта)
--- local - команда определения локальной переменной,
--- которой мы присваеваем новый экземпляр класса (объект)
-local part = Instance.new("Part")
--- Задание размера блока (свойство Size)
-part.Size = Vector3.new(10, 10, 10) -- x,y,z
--- Задание местоположения блока (свойство Position)
-part.Position = Vector3.new(0, 10, -10) -- x,y,z
--- Указываем пренадлежность к службе workspace (свойство Parent),
--- которая отвечает за хранение и отображение объектов
--- в рабочем пространстве
-part.Parent = game.workspace
--- game - главный объект нашей игры,
--- в него входят все службы(подпрограммы)
+local part = game.Workspace.Part
+-- направление в точку A
+local fromPosition = part.Position + Vector3.new(-100, 3 , 5)
+-- направление в точку B
+local toPosition = part.Position + Vector3.new(30, 3 , 5)
+
+local alignPosition = Instance.new("AlignPosition", part)
+local attachment = Instance.new("Attachment", part)
+
+--Enum - это стандартный тип, который предоставляет множество предустановленных перечислений
+alignPosition.Mode = Enum.PositionAlignmentMode.OneAttachment
+--ссылка на присоединение
+alignPosition.Attachment0 = attachment
+alignPosition.MaxVelocity = 15
+alignPosition.MaxForce = 10000000
+
+local alignOrienation = Instance.new("AlignOrientation", part)
+--Enum - для лучшей читабельности
+alignOrienation.Mode = Enum.OrientationAlignmentMode.OneAttachment
+--ссылка на присоединение
+alignOrienation.Attachment0 = attachment
+alignOrienation.MaxTorque = 10000000
+
+while true do
+	part.AlignPosition.Position = fromPosition
+	task.wait(5)
+	part.AlignPosition.Position = toPosition
+	task.wait(5)
+end
+
 			</code></pre>
 	</div>
-	<p>Запустите игру нажав на кнопку "play" - синий треугольник. В рабочем пространстве создастся куб с размером 10х10х10 </p>
+	<p>Запустите игру, Вы можете не только наблюдать за движением платформы, но и кататься на ней.</p>
 
 		<div class="participation" id="zen-participation" role="article">
-			<h3>2.2 Создание объектов вручную в окне Explorer и редактирование свойств в окне Properties </h3>
-			<p>Для создание нового объекта в игре можно воспользоваться окном Explorer. Нажмите на кнопку "+" около службы workspace и выбирите объект класса Part. Это позволит создать Вам новый объект без скрипта.</p>
-			<p>Если объект выделен, то появляется возможность редактировать его свойства в окне Properties (левая колонка - название свойства, правая - значение свойства). Можно менять его размер, координаты, принадлежность к другим объектам.</p>
-			<p>А так же есть множество других свойств, например имя класса (только для чтения), имя объекта, цвет, форма и т.д. Подробнее о всех доступных свойствах объектов Roblox можно узнать в окне Object Browser (слева - название класса, а справа - свойства (розовые), методы (синие) и события (желтые) доступные данному класу)</p>
-			<p>Смело эксперементируйте со свойствами объекта. Помните, что у каждого свойства свой тип данных:</p>
+			<h3>6 Создание объектов AlignPosition, AlignOrientation и Attachment вручную</h3>
+			<p>Создайте новый объект Part в службе workspace и дайте ему имя Part_one. Кнопкой "+" в окне Explorer справа от объекта Part_one добвьте новые объекты AlignPosition, AlignOrientation и Attachment и поменяйте их свойства в соответствии с таблицами свойств:</p>
 		</div>
 
 		<div class="benefits" id="moving1" role="article">
-			<h3>3. Физические величины объектов</h3>
-
+			<h3>Таблица 3. Align Position Properties</h3>
 		<table>
 		  <tr>
-			<th>Тип данных</th>
-			<th>Описание</th>
-			<th>Пример</th>
+			<th>Свойство</th>
+			<th>Значение</th>
+			<th>Примечание</th>
 		  </tr>
 		  <tr>
-			<td>nil</td>
-			<td>Отсутствие значения</td>
-			<td>local myVariable = nil</td>
+			<td>Mode</td>
+			<td>OneAttachment</td>
+			<td>В режиме одного присоединения</td>
 		  </tr>
 		  <tr>
-			<td>boolean</td>
-			<td>Логическое значение (true или false)</td>
-			<td>local isTrue = true</td>
+			<td>Attachment0</td>
+			<td>attachment</td>
+			<td>ссылаемся на данное присоединение</td>
 		  </tr>
 		  <tr>
-			<td>number</td>
-			<td>Целые и дробные числа</td>
-			<td>local myNumber = 10
-			<br>local myFloat = 3.14</td>
+			<td>MaxVelocity</td>
+			<td>15</td>
+			<td>Скорость</td>
 		  </tr>
 		  <tr>
-			<td>string</td>
-			<td>Строка символов</td>
-			<td>local myString = "Hello, world!"</td>
-		  </tr>
-		  <tr>
-			<td>table</td>
-			<td>Сбор данных, состоящий из ключей и значений</td>
-			<td>local myTable = {
-			  name = "John",
-			  age = 30
-			}</td>
-		  </tr>
-		  <tr>
-			<td>function</td>
-			<td>Блок кода, который можно вызывать</td>
-			<td>local function sayHello()
-			  print("Hello!")
-			end</td>
-		  </tr>
-		  <tr>
-			<td>userdata</td>
-			<td>Специальный тип данных, который используется для работы с C++</td>
-			<td>local myUserdata = Instance.new("Part")</td>
-		  </tr>
-		  <tr>
-			<td>Vector3</td>
-			<td>Представляет точку в 3D пространстве</td>
-			<td>local myVector = Vector3.new(1, 2, 3)</td>
-		  </tr>
-		  <tr>
-			<td>Dictionary</td>
-			<td>Сбор данных, который хранит пары ключ-значение</td>
-			<td>local myDictionary = {
-			  name = "John",
-			  age = 30
-			}</td>
-		  </tr>
-		  <tr>
-			<td>CFrame</td>
-			<td>Представляет положение и ориентацию объекта в 3D пространстве</td>
-			<td>local myCFrame = CFrame.new(1, 2, 3)</td>
+			<td>MaxForce</td>
+			<td>10000000</td>
+			<td>Сила</td>
 		  </tr>
 		</table>
-
+		<h3>Таблица 4. Align Orientation Properties</h3>
+		<table>
+		  <tr>
+			<th>Свойство</th>
+			<th>Значение</th>
+			<th>Примечание</th>
+		  </tr>
+		  <tr>
+			<td>Mode</td>
+			<td>OneAttachment</td>
+			<td>В режиме одного присоединения</td>
+		  </tr>
+		  <tr>
+			<td>Attachment0</td>
+			<td>attachment</td>
+			<td>ссылаемся на данное присоединение</td>
+		  </tr>
+		  <tr>
+			<td>MaxTorque</td>
+			<td>10000000</td>
+			<td>Крутящий момент</td>
+		  </tr>
+		</table>
+		<p>Вы можете задать место назначения движущейся платформы меняя свойство объекта Align Position - Position (координата x, y, z).</p>
 		</div>
 {% endblock %}
 {% block design_selection %}
 			<div class="design-selection" id="design-selection">
-				<h3 class="select">Оглавление:</h3>
+				<h3 class="select">День второй:</h3>
 				<nav role="navigation">
 					<ul>
 											<li>
-						<a href="#environment" class="design-name" >1. Изучение основных объектов моделирования физики</a>
+						<a href="#environment" class="design-name" >4. Объекты моделирования физики</a>
 					</li>					<li>
-						<a href="#moving" class="designer-name">2. Создание движущейся платформы</a>
+						<a href="#moving" class="designer-name">5. Создание движущейся платформы</a>
 					</li>					<li>
-						<a href="#moving1" class="design-name">3. Физические величины объектов</a>
+						<a href="#zen-participation" class="design-name">6 Создание объектов AlignPosition, AlignOrientation и Attachment вручную</a>
 					</li>
 					</ul>
 				</nav>
