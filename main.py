@@ -17,6 +17,9 @@ def user(name):
 @app.route('/page2')
 def page2():
     return render_template('page2.html')
+@app.route('/page3')
+def page3():
+    return render_template('page3.html')
 @app.route('/templ')
 def template_page():
     return render_template('template_page.html')
