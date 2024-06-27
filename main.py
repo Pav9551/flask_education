@@ -20,6 +20,9 @@ def page2():
 @app.route('/page3')
 def page3():
     return render_template('page3.html')
+@app.route('/page4')
+def page4():
+    return render_template('page4.html')
 @app.route('/templ')
 def template_page():
     return render_template('template_page.html')
