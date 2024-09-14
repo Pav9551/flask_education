@@ -26,6 +26,9 @@ def page4():
 @app.route('/page5')
 def page5():
     return render_template('page5.html')
+@app.route('/page6')
+def page6():
+    return render_template('page6.html')
 @app.route('/templ')
 def template_page():
     return render_template('template_page.html')
